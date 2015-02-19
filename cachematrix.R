@@ -46,11 +46,13 @@ makeCacheMatrix <- function(x = matrix()) {
 cacheSolve <- function(x, ...) {
     inv <- x$getInverse()
     if(is.null(inv)) {
+        # not computed yet, let's compute and save
         substance <- x$get()
         inv <- solve(substance, ...)
         x$setInverse(inv)
         inv
     } else {
+        # already known
         message("yay, cached")
         inv
     }
